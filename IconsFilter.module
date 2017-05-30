@@ -1,0 +1,53 @@
+<?php
+
+/**
+ *
+ * Icons Filter
+ *
+ * @author Robin Sallis
+ *
+ * ProcessWire 3.x
+ * Copyright (C) 2011 by Ryan Cramer
+ * Licensed under GNU/GPL v2, see LICENSE.TXT
+ *
+ * http://www.processwire.com
+ * http://www.ryancramer.com
+ *
+ */
+
+class IconsFilter extends WireData implements Module {
+
+	/**
+	 * Module information
+	 */
+	public static function getModuleInfo() {
+		return array(
+			'title' => 'Icons Filter',
+			'version' => 1,
+			'summary' => 'Allows the "all icons" view in InputfieldIcon to be filtered by name.',
+			'author' => 'Robin Sallis',
+			'autoload' => "template=admin",
+		);
+	}
+
+	/**
+	 * Ready
+	 */
+	public function ready() {
+		$this->addHookAfter('InputfieldIcon::render', $this, 'addExtras');
+	}
+
+	/**
+	 * Add script and stylesheet
+	 */
+	public function addExtras($event) {
+		$info = $this->getModuleInfo();
+		$version = (int) $info['version'];
+		$out = $event->return;
+		$module_path = $this->config->urls->$this;
+		$out .= "<script src='{$module_path}{$this}.js?v=$version'></script>";
+		$out .= "<link rel='stylesheet' href='{$module_path}{$this}.css?v=$version'>";
+		$event->return = $out;
+	}
+
+}
