@@ -1,3 +1,5 @@
+Note: this functionality is now built into [AdminOnSteroids](https://github.com/rolandtoth/AdminOnSteroids).
+
 # IconsFilter
 
 A module for ProcessWire CMS/CMF. Allows the "all icons" view in InputfieldIcon to be filtered by name.
