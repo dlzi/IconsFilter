@@ -42,7 +42,7 @@ class IconsFilter extends WireData implements Module {
 	 */
 	public function addExtras($event) {
 		$info = $this->getModuleInfo();
-		$version = (int) $info['version'];
+		$version = $info['version'];
 		$out = $event->return;
 		$module_path = $this->config->urls->$this;
 		$out .= "<script src='{$module_path}{$this}.js?v=$version'></script>";
