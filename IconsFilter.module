@@ -10,7 +10,7 @@ class IconsFilter extends WireData implements Module {
             'title' => 'Icons Filter',
             'version' => 1,
             'summary' => 'Allows the "all icons" view in InputfieldIcon to be filtered by name.',
-            'author' => 'Robin Sallis',
+            'author' => 'Daniel Zilli',
             'autoload' => "template=admin",
         );
     }
