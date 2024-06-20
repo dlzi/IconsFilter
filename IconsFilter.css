@@ -1,5 +1,4 @@
-.InputfieldIcon .hidden { display:none; }
-#icons-filter { float:right; position:relative; }
-#icons-filter::before { content:"\1F50E"; position:absolute; top:2px; left:5px; font-size:15px; color:#6c96a4; pointer-events:none; }
-#icons-filter-input { padding:3px 0 3px 22px; }
-.InputfieldIconAll { clear:both; }
+.InputfieldIcon .hidden { display: none !important; }
+#icons-filter { float: right; position: relative; margin-bottom: 10px; }
+#icons-filter-input { padding: 3px 0 3px 22px; }
+.InputfieldIconAll { clear: both; }
