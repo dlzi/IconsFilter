@@ -8,8 +8,8 @@ class IconsFilter extends WireData implements Module {
     public static function getModuleInfo() {
         return array(
             'title' => 'Icons Filter',
-            'version' => 1,
-            'summary' => 'Allows the "all icons" view in InputfieldIcon to be filtered by name.',
+            'version' => 2,
+            'summary' => 'Enables filtering of icons by name in the InputfieldIcon view.',
             'author' => 'Daniel Zilli',
             'autoload' => "template=admin",
         );
