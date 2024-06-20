@@ -1,11 +1,15 @@
-Note: this functionality is now built into [AdminOnSteroids](https://github.com/rolandtoth/AdminOnSteroids).
-
 # IconsFilter
 
-A module for ProcessWire CMS/CMF. Allows the "all icons" view in InputfieldIcon to be filtered by name.
+A module for ProcessWire CMS/CMF that enables filtering of icons by name in the InputfieldIcon view.
 
 ## Usage
 
-[Install](http://modules.processwire.com/install-uninstall/) the IconsFilter module.
+- [Install](http://modules.processwire.com/install-uninstall/) the IconsFilter module.
+- Navigate to the Icon section in the Basics tab of field or template settings.
+- Click on 'Show All Icons'.
+- Use the filter input at the top right to search for icons by name.
 
-When viewing "all icons" in InputfieldIcon (Advanced tab of field/template settings) you can filter the icons by name using the filter input at top right.
+
+## Credits
+
+Special thanks to the original author, [Robin Sallis](https://github.com/Toutouwai) for creating this module.
