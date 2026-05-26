@@ -1,4 +1,13 @@
 .InputfieldIcon .hidden { display: none !important; }
-#icons-filter { float: right; position: relative; margin-bottom: 10px; }
-#icons-filter-input { padding: 3px 0 3px 22px; }
+
+#icons-filter {
+    float: right;
+    position: relative;
+    margin-bottom: 10px;
+}
+
+#icons-filter-input {
+    padding: 3px 0 3px 22px;
+}
+
 .InputfieldIconAll { clear: both; }

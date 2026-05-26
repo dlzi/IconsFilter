@@ -1,38 +1,29 @@
-<?php
+<?php namespace ProcessWire;
 
 class IconsFilter extends WireData implements Module {
 
-    /**
-     * Module information
-     */
-    public static function getModuleInfo() {
-        return array(
-            'title' => 'Icons Filter',
-            'version' => 2,
-            'summary' => 'Enables filtering of icons by name in the InputfieldIcon view.',
-            'author' => 'Daniel Zilli',
-            'autoload' => "template=admin",
-        );
+    const VERSION = 3;
+
+    public static function getModuleInfo(): array {
+        return [
+            'title'    => 'Icons Filter',
+            'version'  => self::VERSION,
+            'summary'  => 'Enables filtering of icons by name in the InputfieldIcon view.',
+            'author'   => 'Daniel Zilli',
+            'icon'     => 'filter',
+            'autoload' => 'template=admin',
+            'requires' => ['InputfieldIcon'],
+        ];
     }
 
-    /**
-     * Ready
-     */
-    public function ready() {
-        $this->addHookAfter('InputfieldIcon::render', $this, 'addExtras');
-    }
+    public function init(): void {
+        $this->addHookAfter('InputfieldIcon::render', function(HookEvent $event): void {
+            $config     = $this->wire()->config;
+            $modulePath = $config->urls->siteModules . 'IconsFilter/';
+            $v          = self::VERSION;
 
-    /**
-     * Add script and stylesheet
-     */
-    public function addExtras($event) {
-        $info = $this->getModuleInfo();
-        $version = $info['version'];
-        $out = $event->return;
-        $modulePath = $this->config->urls->siteModules . "IconsFilter/";
-        $out .= "<script src='{$modulePath}IconsFilter.js?v=$version'></script>";
-        $out .= "<link rel='stylesheet' href='{$modulePath}IconsFilter.css?v=$version'>";
-        $event->return = $out;
+            $config->styles->add("{$modulePath}IconsFilter.css?v={$v}");
+            $config->scripts->add("{$modulePath}IconsFilter.js?v={$v}");
+        });
     }
-
 }

@@ -1,32 +1,38 @@
-$(document).ready(function() {
-    // Insert filter input before icons
-    $('.InputfieldIconAll').before('<div id="icons-filter" class="hidden"><input id="icons-filter-input" type="text" placeholder="Filter icons..."></div>');
+$(document).ready(function () {
 
-    // Toggle the filter input visibility
-    $('a.InputfieldIconShowAll').click(function() {
-        $('#icons-filter').toggleClass('hidden');
-        $('#icons-filter-input').val('');
+    // Insert filter input before the icon grid
+    $('.InputfieldIconAll').before(
+        '<div id="icons-filter" class="hidden">' +
+            '<input id="icons-filter-input" type="search" placeholder="Filter icons…" autocomplete="off">' +
+        '</div>'
+    );
 
-        // Show all icons when filter input is shown
-        $('.InputfieldIconAll i').parent('div').removeClass('hidden');
+    // Toggle filter when "Show All Icons" is clicked
+    $('a.InputfieldIconShowAll').on('click', function () {
+        const $icon   = $(this).closest('.InputfieldIcon');
+        const $filter = $icon.find('#icons-filter');
+        const $input  = $filter.find('#icons-filter-input');
 
-        // Focus on the input field
-        if (!$('#icons-filter').hasClass('hidden')) {
-            $('#icons-filter-input').focus();
+        $filter.toggleClass('hidden');
+        $input.val('');
+
+        // Reset all icon tiles to visible
+        $icon.find('.InputfieldIconAll i').removeClass('hidden');
+
+        if (!$filter.hasClass('hidden')) {
+            $input.trigger('focus');
         }
     });
 
-    // Filter icons based on input value
-    $('.InputfieldIcon').on('keyup', '#icons-filter-input', function() {
-        var filterValue = $(this).val().toLowerCase();
-        var $icons = $('.InputfieldIconAll i');
-        $icons.each(function() {
-            var title = $(this).attr('title').toLowerCase();
-            if (title.indexOf(filterValue) === -1) {
-                $(this).addClass('hidden');
-            } else {
-                $(this).removeClass('hidden');
-            }
+    // Live filter — 'input' catches typing, paste and speech input
+    // Delegated to .InputfieldIcon, scoped per field instance
+    $('.InputfieldIcon').on('input', '#icons-filter-input', function () {
+        const val  = this.value.toLowerCase();
+        const $all = $(this).closest('.InputfieldIcon').find('.InputfieldIconAll i');
+
+        $all.each(function () {
+            const title = ($(this).attr('title') || '').toLowerCase();
+            $(this).toggleClass('hidden', val.length > 0 && !title.includes(val));
         });
     });
 });
